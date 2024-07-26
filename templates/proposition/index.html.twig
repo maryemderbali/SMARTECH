@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Proposition index{% endblock %}
+
+{% block body %}
+    <h1>Proposition index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>NomPrestataire</th>
+                <th>IdEntreprise</th>
+                <th>NumeroTelephone</th>
+                <th>Mail</th>
+                <th>Titre</th>
+                <th>Montant</th>
+                <th>Message</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for proposition in propositions %}
+            <tr>
+                <td>{{ proposition.nomPrestataire }}</td>
+                <td>{{ proposition.idEntreprise }}</td>
+                <td>{{ proposition.numeroTelephone }}</td>
+                <td>{{ proposition.mail }}</td>
+                <td>{{ proposition.titre }}</td>
+                <td>{{ proposition.montant }}</td>
+                <td>{{ proposition.message }}</td>
+                <td>
+                    <a href="{{ path('app_proposition_show', {'nomPrestataire': proposition.nomPrestataire}) }}">show</a>
+                    <a href="{{ path('app_proposition_edit', {'nomPrestataire': proposition.nomPrestataire}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="8">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_proposition_new') }}">Create new</a>
+{% endblock %}

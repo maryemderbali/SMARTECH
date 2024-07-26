@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Livraison index{% endblock %}
+
+{% block body %}
+    <h1>Livraison index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Nom</th>
+                <th>Prenom</th>
+                <th>Adresse</th>
+                <th>Prix</th>
+                <th>NbreCommandes</th>
+                <th>Idlivraison</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for livraison in livraisons %}
+            <tr>
+                <td>{{ livraison.nom }}</td>
+                <td>{{ livraison.prenom }}</td>
+                <td>{{ livraison.adresse }}</td>
+                <td>{{ livraison.prix }}</td>
+                <td>{{ livraison.nbreCommandes }}</td>
+                <td>{{ livraison.idlivraison }}</td>
+                <td>
+                    <a href="{{ path('app_livraison_show', {'idlivraison': livraison.idlivraison}) }}">show</a>
+                    <a href="{{ path('app_livraison_edit', {'idlivraison': livraison.idlivraison}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_livraison_new') }}">Create new</a>
+{% endblock %}

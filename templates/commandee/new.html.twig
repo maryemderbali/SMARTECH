@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Commandee{% endblock %}
+
+{% block body %}
+    <h1>Create new Commandee</h1>
+
+    {{ include('commandee/_form.html.twig') }}
+
+    <a href="{{ path('app_commandee_index') }}">back to list</a>
+{% endblock %}

@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Service index{% endblock %}
+
+{% block body %}
+    <h1>Service index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Idservice</th>
+                <th>Nomservice</th>
+                <th>Datecreation</th>
+                <th>Location</th>
+                <th>Prix</th>
+                <th>Timeavailable</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for service in services %}
+            <tr>
+                <td>{{ service.idservice }}</td>
+                <td>{{ service.nomservice }}</td>
+                <td>{{ service.datecreation ? service.datecreation|date('Y-m-d') : '' }}</td>
+                <td>{{ service.location }}</td>
+                <td>{{ service.prix }}</td>
+                <td>{{ service.timeavailable ? service.timeavailable|date('Y-m-d') : '' }}</td>
+                <td>
+                    <a href="{{ path('app_service_show', {'idservice': service.idservice}) }}">show</a>
+                    <a href="{{ path('app_service_edit', {'idservice': service.idservice}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_service_new') }}">Create new</a>
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Paniers{% endblock %}
+
+{% block body %}
+    <h1>Paniers</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>PanierId</th>
+                <td>{{ panier.panierId }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_paniers_index') }}">back to list</a>
+
+    <a href="{{ path('app_paniers_edit', {'panierId': panier.panierId}) }}">edit</a>
+
+    {{ include('paniers/_delete_form.html.twig') }}
+{% endblock %}

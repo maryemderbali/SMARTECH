@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Commandee index{% endblock %}
+
+{% block body %}
+    <h1>Commandee index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Service</th>
+                <th>Date</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for commandee in commandees %}
+            <tr>
+                <td>{{ commandee.id }}</td>
+                <td>{{ commandee.service }}</td>
+                <td>{{ commandee.date ? commandee.date|date('Y-m-d') : '' }}</td>
+                <td>
+                    <a href="{{ path('app_commandee_show', {'id': commandee.id}) }}">show</a>
+                    <a href="{{ path('app_commandee_edit', {'id': commandee.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_commandee_new') }}">Create new</a>
+{% endblock %}
